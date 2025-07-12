@@ -1,3 +1,18 @@
+goal_commentary = [
+    "What a screamer into the top corner!💥",
+    "Keeper had no chance!⚽🔥",
+    "An absolute beauty of a goal!",
+    "He sends the keeper the wrong way!😎",
+    "GOOOAAAALLLL! The crowd goes wild!🥳"
+]
+
+save_commentary = [
+    "That’s a world-class save! 🧤",
+    "Brilliant reflexes from the keeper!",
+    "Denied! The wall stands tall! 🚧",
+    "Incredible stop, what a moment!",
+    "Keeper guessed it perfectly! ❌"
+]
 import random
 import time
 
@@ -26,6 +41,7 @@ if mode == "1":
         if guess == shot:
             print("Good job! What a save! 🧤⚽\n")
             score += 1
+            print(random.choice(save_commentary))
         else:
             print(f"The player shot {shot}. You missed it!\n")
 
@@ -42,11 +58,17 @@ elif mode == "2":
     while True:
         keeper = random.choice(directions)
         shot = input(f"Which direction do you shoot? {tuple(directions)}: ").lower()
+
+        if shot not in directions:
+            print("Invalid direction! Choose from up, down, left, or right.\n")
+            continue
+
         time.sleep(0.5)
 
         if shot != keeper:
-            print("GOAAALLL!! ⚽🔥\n")
+            print("GOAAALLL!!⚽🔥 \n")
             score += 1
+            print(random.choice(goal_commentary))
         else:
             print(f"The keeper guessed {keeper} and saved it! 🧤\n")
 
@@ -58,3 +80,4 @@ elif mode == "2":
 
 else:
     print("Invalid input. Please restart the game and choose 1 or 2.")
+
